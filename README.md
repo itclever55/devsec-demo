@@ -56,3 +56,69 @@ You must be able to explain:
 
 Read [docs/ai-authorship-policy.md](docs/ai-authorship-policy.md) before you
 start work on your submission.
+
+## Django based class demo about Security essentials required by dev
+
+## User Authentication Service (webwi)
+
+This repository now includes a dedicated Django authentication app named `webwi`.
+
+### Features
+
+- User registration
+- Login and logout
+- Protected authenticated dashboard
+- Password change flow
+- Basic profile management
+- Role-based access control for privileged actions
+
+### RBAC model
+
+- Anonymous visitors: can access login and registration pages only.
+- Authenticated users: can access dashboard, profile, and password change routes.
+- Privileged users (`is_staff`, `is_superuser`, or users with `webwi.view_user_directory`): can access privileged user directory route.
+
+Unauthorized access to privileged views is denied with an HTTP 403 response.
+
+### Setup
+
+1. Install dependencies:
+
+	```bash
+	pip install -r requirements.txt
+	```
+
+2. Ensure environment variables are set (for example in a `.env` file):
+
+	- `DJANGO_SECRET_KEY`
+	- `DJANGO_DEBUG`
+
+3. Run migrations:
+
+	```bash
+	python manage.py migrate
+	```
+
+4. Start server:
+
+	```bash
+	python manage.py runserver
+	```
+
+### Auth URLs
+
+- `/register/`
+- `/login/`
+- `/logout/`
+- `/dashboard/`
+- `/password/change/`
+- `/profile/`
+- `/users/` (privileged only)
+
+### Tests
+
+Run all tests:
+
+```bash
+python manage.py test
+```
